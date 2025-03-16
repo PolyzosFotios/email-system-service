@@ -1,24 +1,43 @@
-{% extends "mail/layout.html" %}
+{% extends "mail/layout.html" %} {% block body %}
 
-{% block body %}
-
-    <h2>Login</h2>
+<div class="login">
+  <div class="container-login">
+    <h2 class="login-title">Welcome back!</h2>
+    <p class="login-subtitle">Sign in with your email here.</p>
 
     {% if message %}
-        <div>{{ message }}</div>
+    <div>{{ message }}</div>
     {% endif %}
 
     <form action="{% url 'login' %}" method="post">
-        {% csrf_token %}
-        <div class="form-group">
-            <input autofocus class="form-control" type="email" name="email" placeholder="Email">
-        </div>
-        <div class="form-group">
-            <input class="form-control" type="password" name="password" placeholder="Password">
-        </div>
-        <input class="btn btn-primary" type="submit" value="Login">
+      {% csrf_token %}
+      <div class="form-group">
+        <input
+          autofocus
+          class="form-control"
+          type="email"
+          name="email"
+          placeholder="Email"
+        />
+      </div>
+      <div class="form-group">
+        <input
+          class="form-control"
+          type="password"
+          name="password"
+          placeholder="Password"
+        />
+      </div>
+      <input class="btn btn-primary login-btn" type="submit" value="Login" />
     </form>
+    <p class="info">
+      By continuing, you agree to our <strong> Terms of Service.</strong>
+    </p>
+    <hr />
+    <p class="login-to-signup">
+      Don't have an account? <a href="{% url 'register' %}"> Sign Up</a>
+    </p>
+  </div>
 
-    Don't have an account? <a href="{% url 'register' %}">Register here.</a>
-
-{% endblock %}
+  {% endblock %}
+</div>
